@@ -9,6 +9,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:label="XApp" android:name="cloudstudios.XApp.ControlActivity"></activity>
     </application>
-
 </manifest>
