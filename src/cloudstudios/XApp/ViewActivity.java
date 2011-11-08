@@ -2,60 +2,51 @@ package cloudstudios.XApp;
 
 import android.app.Activity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.CheckBox;
 import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.TextView;
 
 public class ViewActivity extends Activity {
-	public LinearLayout Hl(View... views){
-    	LinearLayout l = new LinearLayout(getApplicationContext());    	
-    	for(int i = 0; i < views.length; i++){
+	
+	public Lin Lin(View ... views){
+		Lin l = new Lin(getApplicationContext());
+		for(int i = 0; i < views.length; i++){
     		l.addView(views[i]);
     	}
-    	return l;
-    }
-	public LinearLayout Vl(View... views){
-		LinearLayout l = new LinearLayout(getApplicationContext());
-		l.setOrientation(LinearLayout.VERTICAL);
-		for(int i = 0; i < views.length; i++){
-			l.addView(views[i]);
-		}
-		return l;	
+		return l;
 	}
 	public HorizontalScrollView Hs(View... views){
-		LinearLayout l = Hl();
-    	for(int i = 0; i < views.length; i++){
-    		l.addView(views[i]);
-    	}
+		Lin l = Lin(views);
     	HorizontalScrollView s = new HorizontalScrollView(getApplicationContext());    	
     	s.addView(l);
     	return s;
 	}
 	public ScrollView Vs(View... views){
-		LinearLayout l = Vl();
-    	for(int i = 0; i < views.length; i++){
-    		l.addView(views[i]);
-    	}
+		Lin l = Lin(views).vertical(true);
+
     	ScrollView s = new ScrollView(getApplicationContext());
     	s.addView(l);
     	return s;
 	}
-    public TextView Lbl(String text){
-    	TextView t = new TextView(getApplicationContext());
+    public Lbl Lbl(String text){
+    	Lbl t = new Lbl(getApplicationContext());
     	t.setText(text);
     	return t;
     }
-    public EditText Txt(String text){
-    	EditText t = new EditText(getApplicationContext());
+    public Txt Txt(String text){
+    	Txt t = new Txt(getApplicationContext());
     	t.setText(text);
     	return t;
     }
-    public Button Btn(String text){
-    	Button b = new Button(getApplicationContext());
+    public Btn Btn(String text){
+    	Btn b = new Btn(getApplicationContext());
     	b.setText(text);
     	return b;
+    }
+    public CheckBox Chk(){
+    	return new CheckBox(getApplicationContext());
+    }
+    public Slider Slider(){
+    	return new Slider(getApplicationContext());
     }
 }
