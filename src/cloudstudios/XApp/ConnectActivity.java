@@ -17,7 +17,7 @@ public class ConnectActivity extends ViewActivity implements OnClickListener {
         setContentView(Vs(
         	Lin(
         		Lbl("IP:").width(100),
-        		ip = Txt("192.168.1.45").width(-1)
+        		ip = Txt("192.168.1.40").width(-1)
         	),
         	Lin(
         		connect = Btn("Connect").width(200)
