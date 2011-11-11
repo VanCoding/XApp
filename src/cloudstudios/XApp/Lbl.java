@@ -1,6 +1,7 @@
 package cloudstudios.XApp;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.widget.TextView;
 
 public class Lbl extends TextView{
@@ -16,6 +17,14 @@ public class Lbl extends TextView{
 	}
 	public Lbl height(int h){
 		this.h = h;
+		return this;
+	}
+	public Lbl textsize(int s){
+		setTextSize(s);
+		return this;
+	}
+	public Lbl bold(boolean b){
+		this.setTypeface(null,b?Typeface.BOLD : Typeface.NORMAL);
 		return this;
 	}
 	protected void onAttachedToWindow(){

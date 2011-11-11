@@ -27,6 +27,14 @@ public class Lin extends LinearLayout {
 		setGravity(g);
 		return this;
 	}
+	public Lin padding(int p){
+		setPadding(p,p,p,p);
+		return this;
+	}
+	public Lin color(int color){
+		setBackgroundColor(color);
+		return this;
+	}
 	
 	protected void onAttachedToWindow(){
 		this.getLayoutParams().height = h;
