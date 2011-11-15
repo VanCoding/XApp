@@ -32,7 +32,7 @@ public class ConnectActivity extends ViewActivity implements OnClickListener, Cl
     public void OnConnect(){
     	progress.dismiss();
     	Log.d("abc", "CONNECTED!!!");
-    	this.startActivity(new Intent(this,ControlActivity.class));    	
+    	this.startActivity(new Intent(this,ChannelListActivity.class));    	
     }
     public void OnError(String error){
     	Log.d("abc","ERROR:"+error);

@@ -2,7 +2,6 @@ package cloudstudios.XApp;
 
 import android.app.Activity;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
 
@@ -43,8 +42,8 @@ public class ViewActivity extends Activity {
     	b.setText(text);
     	return b;
     }
-    public CheckBox Chk(){
-    	return new CheckBox(getApplicationContext());
+    public Chk Chk(){
+    	return new Chk(getApplicationContext());
     }
     public Slider Slider(){
     	return new Slider(getApplicationContext());

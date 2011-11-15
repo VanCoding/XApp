@@ -1,6 +1,7 @@
 package cloudstudios.XApp;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.LinearLayout;
 
 public class Lin extends LinearLayout {
@@ -10,6 +11,12 @@ public class Lin extends LinearLayout {
 
 	public Lin(Context context) {
 		super(context);
+	}
+	public Lin(Context context, View... views){
+		this(context);
+		for(int i = 0; i < views.length; i++){
+			this.addView(views[i]);
+		}
 	}
 	public Lin width(int w){
 		this.w = w;
@@ -35,7 +42,10 @@ public class Lin extends LinearLayout {
 		setBackgroundColor(color);
 		return this;
 	}
-	
+	public Lin touch(OnTouchListener l){
+		this.setOnTouchListener(l);
+		return this;
+	}
 	protected void onAttachedToWindow(){
 		this.getLayoutParams().height = h;
 		this.getLayoutParams().width = w;

@@ -11,6 +11,10 @@ public class Lbl extends TextView{
 	public Lbl(Context context) {
 		super(context);
 	}
+	public Lbl text(String text){
+		this.setText(text);
+		return this;
+	}
 	public Lbl width(int w){
 		this.w = w;
 		return this;

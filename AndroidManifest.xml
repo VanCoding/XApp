@@ -3,12 +3,13 @@
     <uses-sdk android:minSdkVersion="10" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <application android:icon="@drawable/ic_launcher" android:label="XApp" >
-        <activity android:label="XApp" android:name="cloudstudios.XApp.ConnectActivity" >
+        <activity android:label="XApp" android:name=".ConnectActivity" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:label="XApp" android:name="cloudstudios.XApp.ControlActivity"></activity>
+        <activity android:label="XApp" android:name=".ChannelListActivity"></activity>
+        <activity android:label="XApp" android:name=".ChannelActivity"></activity>
     </application>
 </manifest>
