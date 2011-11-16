@@ -34,7 +34,7 @@
 		<link>
 			<name>linkedsrc/cloudstudios</name>
 			<type>2</type>
-			<location>C:/Users/Patrik/Desktop/XClient/src/cloudstudios</location>
+			<locationURI>WORKSPACE_LOC/XClient/src/cloudstudios</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
