@@ -31,6 +31,12 @@ public class Lbl extends TextView{
 		this.setTypeface(null,b?Typeface.BOLD : Typeface.NORMAL);
 		return this;
 	}
+	
+	public Lbl padding(int p){
+		this.setPadding(p,p,p,p);
+		return this;
+	}
+	
 	protected void onAttachedToWindow(){
 		this.getLayoutParams().height = h;
 		this.getLayoutParams().width = w;

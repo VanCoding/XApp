@@ -3,9 +3,15 @@ package cloudstudios.XApp;
 import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import cloudstudios.XClient.Channel;
 
-public class ChannelActivity extends ViewActivity implements OnCheckedChangeListener {
+public class ChannelActivity extends ViewActivity implements OnCheckedChangeListener, OnSeekBarChangeListener {
+	
+	private Slider sDelay,sLevel;
+	private Lbl tDelay,tLevel;
+	
 	
 	private Channel channel;
 	public void onCreate(Bundle savedInstanceState) {
@@ -17,21 +23,44 @@ public class ChannelActivity extends ViewActivity implements OnCheckedChangeList
         }else{
         	channel = ConnectActivity.client.getOutputChannel(b.getInt("number"));
         }
+        
+                
         setContentView(Vs(
         	Lin(
 	        	Chk().checked(channel.getMute()).change(this),
 	        	Lbl("Mute").width(200)        
 	        ),
-	        Lin(
-	        	Lbl("Delay:").width(200),
-	        	Lin(
-		        	Slider().width(-1),
-		        	Txt(channel.getDelay()+"").width(200)
-		        ).width(-1)
-	        ).width(-1)
-        ));        
+	        Lbl("Delay (ms)"),
+	        Lin(	        	
+	        	sDelay = Slider().width(0.8).max(62400).seeked(this).progress(channel.getDelay()),
+	        	tDelay = Lbl("").width(100).textsize(12).padding(10)
+	        ).gravity(16),
+	        Lbl("Level (dB)"),
+	        Lin(	        	
+	        	sLevel = Slider().width(0.8).max(220).seeked(this).progress(channel.getLevel()),
+	        	tLevel = Lbl("").width(100).textsize(12).padding(10)
+	        ).gravity(16)
+        ));
+        
+        onProgressChanged(sDelay,channel.getDelay(),false);
+        onProgressChanged(sLevel,0,false);
     }
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		channel.setMuteAsync(isChecked);		
+	}
+	public void onProgressChanged(SeekBar s, int progress, boolean fromUser) {
+		if(s == sDelay){
+			tDelay.setText(Math.round((progress*100)/96.0)/100.0+"");
+		}else if(s == sLevel){
+			tLevel.setText(Math.round((progress*100)/4.0)/100.0-40.0+"");
+		}
+	}
+	public void onStartTrackingTouch(SeekBar seekBar) {}
+	public void onStopTrackingTouch(SeekBar s) {
+		if(s == sDelay){
+			channel.setDelayAsync(sDelay.getProgress());
+		}else if(s == sLevel){
+			channel.setLevelAsync(sLevel.getProgress());
+		}
 	}
 }
