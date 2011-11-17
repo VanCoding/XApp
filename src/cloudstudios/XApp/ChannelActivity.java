@@ -23,6 +23,7 @@ public class ChannelActivity extends ViewActivity implements OnCheckedChangeList
         }else{
         	channel = ConnectActivity.client.getOutputChannel(b.getInt("number"));
         }
+        channel.load();
         
                 
         setContentView(Vs(

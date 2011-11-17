@@ -11,5 +11,6 @@
         </activity>
         <activity android:label="XApp" android:name=".ChannelListActivity"></activity>
         <activity android:label="XApp" android:name=".ChannelActivity"></activity>
+        <activity android:label="XApp" android:name=".ProgramListActivity"></activity>
     </application>
 </manifest>
