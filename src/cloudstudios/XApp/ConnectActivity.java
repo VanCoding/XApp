@@ -40,6 +40,9 @@ public class ConnectActivity extends ViewActivity implements OnClickListener, Cl
     }
 	
     public void onClick(View v){
+    	if(client != null){
+    		client.disconnect();
+    	}
     	client = new Client(ip.getText().toString(),0);
     	client.setEventReceiver(this);
     	client.connectAsync();

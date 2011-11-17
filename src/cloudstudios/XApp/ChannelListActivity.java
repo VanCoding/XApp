@@ -26,12 +26,18 @@ public class ChannelListActivity extends ViewActivity {
 	public boolean onCreateOptionsMenu(Menu m){
 		m.add("Save");
 		m.add("Load");
+		m.add("Disconnect");
 		return true;
 	}
 	public boolean onOptionsItemSelected(MenuItem i){
-		Intent in = new Intent(this,ProgramListActivity.class); 
-		in.putExtra("mode", i.getTitle());
-		this.startActivity(in);
+		if(i.getTitle().equals("Disconnect")){
+			ConnectActivity.client.disconnect();
+			this.startActivity(new Intent(this,ConnectActivity.class));
+		}else{
+			Intent in = new Intent(this,ProgramListActivity.class); 
+			in.putExtra("mode", i.getTitle());
+			this.startActivity(in);
+		}
 		return true;
 	}
 }

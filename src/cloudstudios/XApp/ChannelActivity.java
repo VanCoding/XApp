@@ -50,7 +50,8 @@ public class ChannelActivity extends ViewActivity implements OnCheckedChangeList
         ));
         
         onProgressChanged(sDelay,channel.getDelay(),false);
-        onProgressChanged(sLevel,0,false);
+        onProgressChanged(sLevel,channel.getLevel(),false);
+        onProgressChanged(sGain,channel.getGain(),false);
     }
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		channel.setMuteAsync(isChecked);		
