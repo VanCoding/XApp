@@ -14,7 +14,7 @@ public class ChannelListEntry extends Lin implements android.view.View.OnTouchLi
 
 	public ChannelListEntry(Context context, ChannelListActivity activity, Channel channel) {
 		super(context,
-			new Lbl(activity.getApplicationContext()).text((channel.getInput()?"Input":"Output")+" Channel "+channel.getNumber()).bold(true)
+			new Lbl(activity.getApplicationContext()).text((channel.getNumber()+1)+" "+(channel.getInput()?"IN ":"OUT")+": "+channel.getName()).bold(true)
 		);
 		height(100).gravity(16).padding(20).touch(this);
 

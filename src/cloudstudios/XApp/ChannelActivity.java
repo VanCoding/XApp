@@ -1,6 +1,7 @@
 package cloudstudios.XApp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.SeekBar;
@@ -9,8 +10,8 @@ import cloudstudios.XClient.Channel;
 
 public class ChannelActivity extends ViewActivity implements OnCheckedChangeListener, OnSeekBarChangeListener {
 	
-	private Slider sDelay,sLevel,sGain;
-	private Lbl tDelay,tLevel,tGain;
+	private Slider sDelay,sLevel;
+	private Lbl tDelay,tLevel;
 	
 	
 	private Channel channel;
@@ -19,12 +20,10 @@ public class ChannelActivity extends ViewActivity implements OnCheckedChangeList
         
         Bundle b = getIntent().getExtras();
         if(b.getBoolean("input")){
-        	channel = ConnectActivity.client.getInputChannel(b.getInt("number"));
+        	channel = ConnectActivity.client.getInputChannels()[b.getInt("number")];
         }else{
-        	channel = ConnectActivity.client.getOutputChannel(b.getInt("number"));
-        }
-        channel.load();
-        
+        	channel = ConnectActivity.client.getOutputChannels()[b.getInt("number")];
+        }        
                 
         setContentView(Vs(
         	Lin(
@@ -40,39 +39,28 @@ public class ChannelActivity extends ViewActivity implements OnCheckedChangeList
 	        Lin(	        	
 	        	sDelay = Slider().width(0.8).max(62400).seeked(this).progress(channel.getDelay()),
 	        	tDelay = Lbl("").width(100).textsize(12).padding(10)
-	        ).gravity(16),
-	        Lbl("Gain (dB)"),
-	        Lin(	        	
-	        	sGain = Slider().width(0.8).max(15).seeked(this).progress(channel.getGain()),
-	        	tGain = Lbl("").width(100).textsize(12).padding(10)
-	        ).gravity(16)
-	        
+	        ).gravity(16)        
         ));
         
         onProgressChanged(sDelay,channel.getDelay(),false);
         onProgressChanged(sLevel,channel.getLevel(),false);
-        onProgressChanged(sGain,channel.getGain(),false);
     }
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		channel.setMuteAsync(isChecked);		
+		channel.setMute(isChecked);		
 	}
 	public void onProgressChanged(SeekBar s, int progress, boolean fromUser) {
 		if(s == sDelay){
 			tDelay.setText(Math.round((progress*100)/96.0)/100.0+"");
 		}else if(s == sLevel){
 			tLevel.setText(Math.round((progress*100)/4.0)/100.0-40.0+"");
-		}else if(s == sGain){
-			tGain.setText(progress*3+"");
 		}
 	}
 	public void onStartTrackingTouch(SeekBar seekBar) {}
 	public void onStopTrackingTouch(SeekBar s) {
 		if(s == sDelay){
-			channel.setDelayAsync(sDelay.getProgress());
+			channel.setDelay(sDelay.getProgress());
 		}else if(s == sLevel){
-			channel.setLevelAsync(sLevel.getProgress());
-		}else if(s == sGain){
-			channel.setGainAsync(sGain.getProgress());
+			channel.setLevel(sLevel.getProgress());
 		}
 	}
 }

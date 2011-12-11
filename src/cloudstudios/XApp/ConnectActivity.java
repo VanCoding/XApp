@@ -4,7 +4,6 @@ import cloudstudios.XClient.*;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -29,23 +28,19 @@ public class ConnectActivity extends ViewActivity implements OnClickListener, Cl
         connect.setOnClickListener(this);
         
     }
-    public void OnConnect(){
+
+    public void onSyncCompleted(){
     	progress.dismiss();
-    	Log.d("abc", "CONNECTED!!!");
-    	this.startActivity(new Intent(this,ChannelListActivity.class));    	
-    }
-    public void OnError(String error){
-    	Log.d("abc","ERROR:"+error);
-    	progress.dismiss();
+    	this.startActivity(new Intent(this,ChannelListActivity.class)); 
     }
 	
     public void onClick(View v){
     	if(client != null){
     		client.disconnect();
     	}
-    	client = new Client(ip.getText().toString(),0);
-    	client.setEventReceiver(this);
-    	client.connectAsync();
-    	progress = ProgressDialog.show(ConnectActivity.this, "Connecting...","Connecting...");
+		client = new Client(ip.getText().toString(),0);
+		client.setEventReceiver(this);
+		client.sync();
+		progress = ProgressDialog.show(ConnectActivity.this, "Connecting...","Connecting...");
 	}
 }
